@@ -69,16 +69,19 @@ function App() {
     });
   }
 
+  const stxValue = {
+    items: shoppingCart.items,
+    addItemToCart: handleAddItemToCart,
+    updateItemQuantity: handleUpdateCartItemQuantity
+  };
+
   return (
-    <CartContext.Provider value={{ items: [] }}>
-      <Header
-        cart={shoppingCart}
-        onUpdateCartItemQuantity={handleUpdateCartItemQuantity}
-      />
+    <CartContext.Provider value={stxValue}>
+      <Header />
       <Shop>
         {DUMMY_PRODUCTS.map((product) => (
           <li key={product.id}>
-            <Product {...product} onAddToCart={handleAddItemToCart} />
+            <Product {...product} />
           </li>
         ))}
       </Shop>
